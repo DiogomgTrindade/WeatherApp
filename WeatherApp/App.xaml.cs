@@ -1,4 +1,6 @@
-﻿namespace WeatherApp
+﻿using WeatherApp.Pages;
+
+namespace WeatherApp
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new LoginPage();
         }
     }
 }
