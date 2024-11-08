@@ -8,7 +8,13 @@ namespace WeatherApp
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            var navPage = new NavigationPage(new LoginPage());
+
+            navPage.BarBackground = Colors.DarkBlue;
+            navPage.BarTextColor = Colors.White;
+
+            MainPage = navPage;
+            
         }
     }
 }

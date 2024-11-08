@@ -29,10 +29,12 @@ public partial class LoginPage : ContentPage
 
 			//TODO: Alterar quando tiver a weather page
 			await DisplayAlert("Login", "You're Welcome", "OK");
+			await Navigation.PushAsync(new MainPage());
+			
 		}
 		else
 		{
-            await DisplayAlert("Erro", "Credenciais inválidas. Tente novamente.", "OK");
+            await DisplayAlert("Erro", "Invalid credentials. Try again.", "OK");
         }
     }
 }

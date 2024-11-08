@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WeatherApp.API
 {
-    internal class WeatherService
+    public class WeatherService
     {
     }
 }
