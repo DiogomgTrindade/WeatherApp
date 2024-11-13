@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using WeatherApp.API;
+using WeatherApp.Pages;
 
 namespace WeatherApp
 {
@@ -18,6 +20,9 @@ namespace WeatherApp
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddTransient<WeatherPage>();
+
 
             return builder.Build();
         }

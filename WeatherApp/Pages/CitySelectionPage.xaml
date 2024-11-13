@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Pages.CitySelectionPage"
+             Title="City Select">
+
+    <StackLayout Padding="20" VerticalOptions="StartAndExpand" Spacing="10">
+        <Entry x:Name="CityNameEntry" Placeholder="Digite o nome da cidade" />
+        <Button Text="Search"
+                x:Name="btnSearch"
+                Clicked="btnSearch_Clicked" />
+
+        <ListView x:Name="CitiesListView" ItemSelected="CitiesListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Country}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
+</ContentPage>
