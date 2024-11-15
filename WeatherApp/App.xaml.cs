@@ -13,7 +13,7 @@ namespace WeatherApp
             navPage.BarBackground = Colors.DarkBlue;
             navPage.BarTextColor = Colors.White;
 
-            MainPage = navPage;
+            MainPage = new NavigationPage(new CitySelectionPage());
             
         }
     }

@@ -33,6 +33,7 @@ namespace WeatherApp.Services
         {
             var favoritesJson = System.Text.Json.JsonSerializer.Serialize(favorites);
             await SecureStorage.SetAsync(FavouritesKey, favoritesJson);
+            Preferences.Set(FavouritesKey, favoritesJson);
         }
 
         public async Task RemoveFromFavoritesAsync(City city)
