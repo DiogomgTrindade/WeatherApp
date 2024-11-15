@@ -5,10 +5,17 @@
              Title="Weather">
 
     <StackLayout Padding="20" VerticalOptions="CenterAndExpand" Spacing="10">
+        
+        <Label x:Name="CityNameLabel" Text="City: - " FontSize="Large" HorizontalOptions="Center" />
+        
         <Label x:Name="TemperatureLabel" Text="Temperature: -" FontSize="Large" HorizontalOptions="Center" />
+        
         <Label x:Name="DescriptionLabel" Text="Condition: -" FontSize="Large" HorizontalOptions="Center" />
+        
         <Label x:Name="HumidityLabel" Text="Humidity: -" FontSize="Large" HorizontalOptions="Center" />
 
+        <Button Text="Add to Favorites" x:Name="FavoriteButton" Clicked="FavoriteButton_Clicked"  BackgroundColor="#FF6347" TextColor="White" CornerRadius="10"/>
+        
         <Button Text="Refresh" Clicked="BtnRefreshWeather_Clicked" BackgroundColor="#6200EE" TextColor="White" CornerRadius="10"/>
     </StackLayout>
 

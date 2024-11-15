@@ -1,22 +1,27 @@
 using WeatherApp.API;
+using WeatherApp.Entities;
+using WeatherApp.Services;
 
 namespace WeatherApp.Pages;
 
 public partial class WeatherPage : ContentPage
 {
 	private readonly WeatherService _weatherService = new WeatherService();
-	private readonly double _latitude;
-	private readonly double _longitude;
+	private readonly FavoriteService _favoriteService = new FavoriteService();
+	private readonly City _currentCity;
 
 
-    public WeatherPage(double latitude, double longitude)
+    public WeatherPage(City city)
 	{
 		InitializeComponent();
-		_latitude = latitude;
-		_longitude = longitude;
+		_currentCity = city;
 
+		CityNameLabel.Text = $"City: {city.Name}";
 		LoadWeatherData();
+		UpdateFavoriteButton();
 	}
+
+   
 
     public WeatherPage()
     {
@@ -27,7 +32,7 @@ public partial class WeatherPage : ContentPage
     private async void LoadWeatherData()
     {
 
-		var weather = await _weatherService.GetWeatherAsync(_latitude, _longitude);
+		var weather = await _weatherService.GetWeatherAsync(_currentCity.Lat, _currentCity.Lon);
 
 		if (weather != null)
 		{
@@ -41,8 +46,37 @@ public partial class WeatherPage : ContentPage
 		}
     }
 
-    private void BtnRefreshWeather_Clicked(object sender, EventArgs e)
+    private async void BtnRefreshWeather_Clicked(object sender, EventArgs e)
     {
-		LoadWeatherData();
+        //LoadWeatherData();
+        await Navigation.PushAsync(new FavoritePage());
+    }
+
+    private async void FavoriteButton_Clicked(object sender, EventArgs e)
+    {
+		if (await _favoriteService.IsFavoriteAsync(_currentCity))
+		{
+			await _favoriteService.RemoveFromFavoritesAsync(_currentCity);
+			await DisplayAlert("Removed", $"{_currentCity.Name} was removed from your favorites.", "OK");
+		}
+		else
+		{
+			await _favoriteService.AddToFavoritesAsync(_currentCity);
+			await DisplayAlert("Added", $"{_currentCity.Name} was added to your favorites.", "OK");
+		}
+
+		UpdateFavoriteButton();
+    }
+
+    private async void UpdateFavoriteButton()
+    {
+        if (await _favoriteService.IsFavoriteAsync(_currentCity))
+		{
+			FavoriteButton.Text = "Remove from Favorites";
+		}
+		else
+		{
+			FavoriteButton.Text = "Add to Favorites";
+		}
     }
 }

@@ -29,7 +29,7 @@ public partial class LoginPage : ContentPage
 
 			//TODO: Alterar quando tiver a weather page
 			await DisplayAlert("Login", "You're Welcome", "OK");
-			await Navigation.PushAsync(new MainPage());
+			await Navigation.PushAsync(new CitySelectionPage());
 			
 		}
 		else

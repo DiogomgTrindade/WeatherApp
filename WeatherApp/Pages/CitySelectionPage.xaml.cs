@@ -39,7 +39,7 @@ public partial class CitySelectionPage : ContentPage
     {
         if(e.SelectedItem is City selectedCity)
         {
-            await Navigation.PushAsync(new WeatherPage(selectedCity.Lat, selectedCity.Lon));
+            await Navigation.PushAsync(new WeatherPage(selectedCity));
         }
     }
 }

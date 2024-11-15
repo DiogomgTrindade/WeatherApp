@@ -17,15 +17,28 @@ namespace WeatherApp.API
             var json = JsonConvert.SerializeObject(loginData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync($"{AuthBaseUrl}/auth/login", content);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                var tokenObj = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-                var token = tokenObj.token.ToString();
-                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                return token;
+                var response = await _httpClient.PostAsync($"{AuthBaseUrl}/auth/login", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var tokenObj = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                    var token = tokenObj.token.ToString();
+                    _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    return token;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                // Log error (optional)
+                Console.WriteLine($"Request error: {ex.Message}");
+            }
+            catch (JsonException ex)
+            {
+                // Log JSON parsing error (optional)
+                Console.WriteLine($"JSON parsing error: {ex.Message}");
             }
 
             return null;
