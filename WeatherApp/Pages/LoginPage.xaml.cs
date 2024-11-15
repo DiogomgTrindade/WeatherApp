@@ -10,30 +10,28 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 	}
 
-    private async void Button_Clicked(object sender, EventArgs e)
+    private async void btnLogin_Clicked(object sender, EventArgs e)
     {
-		var username = UsernameEntry.Text;
-		var password = PasswordEntry.Text;
+        var username = UsernameEntry.Text;
+        var password = PasswordEntry.Text;
 
-		if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-		{
-			await DisplayAlert("Error", "Email or password cannot be empty.", "OK");
-			return;
-		}
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        {
+            await DisplayAlert("Error", "Email or password cannot be empty.", "OK");
+            return;
+        }
 
-		var token = await _loginService.LoginAsync(username, password);
-		if (token != null)
-		{
-			await SecureStorage.SetAsync("auth_token", token);
-			_loginService.SetAuthorizationHeader(token);
+        var token = await _loginService.LoginAsync(username, password);
+        if (token != null)
+        {
+            await SecureStorage.SetAsync("auth_token", token);
+            _loginService.SetAuthorizationHeader(token);
 
-			//TODO: Alterar quando tiver a weather page
-			await DisplayAlert("Login", "You're Welcome", "OK");
-			await Navigation.PushAsync(new CitySelectionPage());
-			
-		}
-		else
-		{
+            var app = Application.Current as App;
+            app?.SetMainPage(new CitySelectionPage());
+        }
+        else
+        {
             await DisplayAlert("Erro", "Invalid credentials. Try again.", "OK");
         }
     }

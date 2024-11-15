@@ -27,7 +27,8 @@
                Text="{Binding Password}"/>
 
         <Button Text="Login"
-                Clicked="Button_Clicked"
+                x:Name="btnLogin"
+                Clicked="btnLogin_Clicked"
                 BackgroundColor="#6200EE" 
                 TextColor="White"
                 CornerRadius="10"/>
