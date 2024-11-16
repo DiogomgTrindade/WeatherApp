@@ -24,6 +24,7 @@ namespace WeatherApp.Services
             var favorites = await GetFavoriteCitiesAsync();
             if(!favorites.Any(c => c.Name == city.Name))
             {
+                city.isFavorite = true;
                 favorites.Add(city);
                 await SaveFavoritesAsync(favorites);
             }
@@ -42,6 +43,7 @@ namespace WeatherApp.Services
             var favoriteToRemove = favorites.FirstOrDefault(c => c.Name == city.Name);
             if (favoriteToRemove != null)
             {
+                city.isFavorite = false;
                 favorites.Remove(favoriteToRemove);
                 await SaveFavoritesAsync(favorites);
             }

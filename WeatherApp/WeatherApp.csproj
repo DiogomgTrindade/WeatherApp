@@ -58,6 +58,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\chuva.gif" />
+	  <None Remove="Resources\Images\heart_filled.svg" />
+	  <None Remove="Resources\Images\heart_outline.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

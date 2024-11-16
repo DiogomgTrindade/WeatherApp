@@ -17,8 +17,7 @@ public partial class WeatherPage : ContentPage
 		_currentCity = city;
 
 		CityNameLabel.Text = $"City: {city.Name}";
-		LoadWeatherData();
-		UpdateFavoriteButton();
+		
 	}
 
    
@@ -48,35 +47,46 @@ public partial class WeatherPage : ContentPage
 
     private async void BtnRefreshWeather_Clicked(object sender, EventArgs e)
     {
-        //LoadWeatherData();
-        await Navigation.PushAsync(new FavoritePage());
+        LoadWeatherData();
+		await DisplayAlert("Success", "Weather refreshed successfully!", "OK");
     }
 
-    private async void FavoriteButton_Clicked(object sender, EventArgs e)
+
+    private void UpdateFavoriteButton()
     {
-		if (await _favoriteService.IsFavoriteAsync(_currentCity))
+        if (_currentCity.isFavorite)
 		{
-			await _favoriteService.RemoveFromFavoritesAsync(_currentCity);
-			await DisplayAlert("Removed", $"{_currentCity.Name} was removed from your favorites.", "OK");
+			btnFavorite.Source = "heart_filled.svg";
 		}
 		else
 		{
-			await _favoriteService.AddToFavoritesAsync(_currentCity);
-			await DisplayAlert("Added", $"{_currentCity.Name} was added to your favorites.", "OK");
+            btnFavorite.Source = "heart_outline.svg";
 		}
-
-		UpdateFavoriteButton();
     }
 
-    private async void UpdateFavoriteButton()
+    private async void btnFavorite_Clicked(object sender, EventArgs e)
     {
         if (await _favoriteService.IsFavoriteAsync(_currentCity))
-		{
-			FavoriteButton.Text = "Remove from Favorites";
-		}
-		else
-		{
-			FavoriteButton.Text = "Add to Favorites";
-		}
+        {
+            await _favoriteService.RemoveFromFavoritesAsync(_currentCity);
+            await DisplayAlert("Removed", $"{_currentCity.Name} was removed from your favorites.", "OK");
+        }
+        else
+        {
+            await _favoriteService.AddToFavoritesAsync(_currentCity);
+            await DisplayAlert("Added", $"{_currentCity.Name} was added to your favorites.", "OK");
+        }
+
+        UpdateFavoriteButton();
+    }
+
+    private async void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        LoadWeatherData();
+
+        var isFavorite = await _favoriteService.IsFavoriteAsync(_currentCity);
+        _currentCity.isFavorite = isFavorite;
+
+        UpdateFavoriteButton();
     }
 }

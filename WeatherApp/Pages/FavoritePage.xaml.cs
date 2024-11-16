@@ -22,7 +22,13 @@ public partial class FavoritePage : ContentPage
     {
         if (e.SelectedItem is City selectedCity)
         {
-            await Navigation.PushAsync(new WeatherPage(selectedCity));
+            var menuPage = Application.Current.MainPage as MenuPage;
+            if (menuPage != null)
+            {
+                menuPage.Detail = new NavigationPage(new WeatherPage(selectedCity));
+                menuPage.IsPresented = false;
+            }
+
         }
     }
 }
