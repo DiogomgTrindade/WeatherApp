@@ -28,7 +28,7 @@ public partial class LoginPage : ContentPage
             _loginService.SetAuthorizationHeader(token);
 
             var app = Application.Current as App;
-            app?.SetMainPage(new CitySelectionPage());
+            app?.SetMainPageToFlyout(new MenuPage());
         }
         else
         {

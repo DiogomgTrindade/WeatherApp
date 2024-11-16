@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Pages.MenuPage"
+             Title="Menu">
+
+    <!-- Menu Lateral -->
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu"
+                     BackgroundColor="White">
+            <VerticalStackLayout Padding="10" Spacing="20">
+                <Label Text="Menu"
+                       FontSize="Large"
+                       Margin="10,0"
+                       Padding="15"/>
+
+                <Button Text="Favorites"
+                        x:Name="btnFavorites"
+                        Clicked="btnFavorites_Clicked" />           
+
+                <Button Text="City Selection"
+                        x:Name="btnCitySelection"
+                        Clicked="btnCitySelection_Clicked" />
+                
+                <Button Text="About"
+                        x:Name="btnAbout"
+                        Clicked="btnAbout_Clicked" />
+
+            </VerticalStackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+
+    <!-- Página Principal -->
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage Title="Home">
+                    <VerticalStackLayout Padding="10" Spacing="15">
+                        <Label Text="Welcome to WeatherApp!"
+                               FontSize="Large" 
+                               HorizontalOptions="Center"/>
+                        <Image Source="welcome_image.png" 
+                               Aspect="AspectFit"
+                               HorizontalOptions="CenterAndExpand" />
+                    </VerticalStackLayout>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+
+
+</FlyoutPage>

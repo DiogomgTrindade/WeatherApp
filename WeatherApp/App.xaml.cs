@@ -10,16 +10,14 @@ namespace WeatherApp
 
 
             MainPage = new NavigationPage(new LoginPage());
-            
+            //MainPage = new MenuPage();
+
         }
 
-        public void SetMainPage(Page page)
+
+        public void SetMainPageToFlyout(Page page)
         {
-            MainPage = new NavigationPage(page)
-            {
-                BarBackgroundColor = Colors.DarkBlue,
-                BarTextColor = Colors.White
-            };
+            MainPage = new MenuPage();
         }
     }
 }
