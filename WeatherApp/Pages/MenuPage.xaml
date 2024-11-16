@@ -26,6 +26,13 @@
                         x:Name="btnAbout"
                         Clicked="btnAbout_Clicked" />
 
+                <Button Text="Logout"
+                        x:Name="btnLogout"
+                        Clicked="btnLogout_Clicked"
+                        BackgroundColor="Red"
+                        TextColor="White" />
+
+
             </VerticalStackLayout>
         </ContentPage>
     </FlyoutPage.Flyout>

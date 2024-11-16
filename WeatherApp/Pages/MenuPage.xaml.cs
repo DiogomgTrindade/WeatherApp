@@ -24,4 +24,10 @@ public partial class MenuPage : FlyoutPage
         Detail = new NavigationPage(new AboutPage());
         IsPresented = false;
     }
+
+    private void btnLogout_Clicked(object sender, EventArgs e)
+    {
+        SecureStorage.Remove("auth_token");
+        Application.Current.MainPage = new NavigationPage(new LoginPage());
+    }
 }
