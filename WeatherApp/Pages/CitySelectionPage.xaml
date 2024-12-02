@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Pages.CitySelectionPage"
-             Title="City Select">
+             Title="City Search">
 
     <StackLayout Padding="20" VerticalOptions="StartAndExpand" Spacing="10">
-        <Entry x:Name="CityNameEntry" Placeholder="Digite o nome da cidade" />
+        <Entry x:Name="CityNameEntry" Placeholder="Search your city here" />
         <Button Text="Search"
                 x:Name="btnSearch"
                 Clicked="btnSearch_Clicked" />

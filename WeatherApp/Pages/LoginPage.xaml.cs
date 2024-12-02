@@ -8,7 +8,10 @@ public partial class LoginPage : ContentPage
 	public LoginPage()
 	{
 		InitializeComponent();
+        CheckInternetConnectivity();
 	}
+
+   
 
     private async void btnLogin_Clicked(object sender, EventArgs e)
     {
@@ -35,4 +38,15 @@ public partial class LoginPage : ContentPage
             await DisplayAlert("Erro", "Invalid credentials. Try again.", "OK");
         }
     }
+
+    private async void CheckInternetConnectivity()
+    {
+        if(Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("No internet connection", "You are not connected to internet, please check your connection.", "OK");
+            btnLogin.IsEnabled = false;
+            lblInternet.IsVisible = true;
+        }
+    }
+
 }

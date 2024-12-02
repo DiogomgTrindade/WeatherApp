@@ -15,7 +15,10 @@ public partial class FavoritePage : ContentPage
     private async void LoadFavorites()
     {
         var favorites = await _favoriteService.GetFavoriteCitiesAsync();
-        FavoritesListView.ItemsSource = favorites;
+
+        var sortedFavorites = favorites.OrderBy(c => c.Name).ToList();
+        FavoritesListView.ItemsSource = sortedFavorites;
+
     }
 
     private async void FavoritesListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

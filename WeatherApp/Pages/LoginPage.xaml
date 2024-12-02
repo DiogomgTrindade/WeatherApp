@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Pages.LoginPage"
-             Title="Login Page">
+             Title="Login">
 
     <StackLayout Padding="30" VerticalOptions="CenterAndExpand" Spacing="10">
 
@@ -32,6 +32,13 @@
                 BackgroundColor="#6200EE" 
                 TextColor="White"
                 CornerRadius="10"/>
+
+        <Label Text="No internet connection"
+               x:Name="lblInternet"
+               TextColor="Red"
+               IsVisible="False"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
 
     </StackLayout>
     
