@@ -6,7 +6,12 @@
              Loaded="ContentPage_Loaded">
 
     <StackLayout Padding="20" VerticalOptions="CenterAndExpand" Spacing="10">
-        
+
+        <Image x:Name="WeatherConditionImage"
+               HorizontalOptions="Center"
+               WidthRequest="300"
+               HeightRequest="200" />
+
         <Label x:Name="CityNameLabel" Text="City: - Loading" FontSize="Large" HorizontalOptions="Center" />
         
         <Label x:Name="TemperatureLabel" Text="Temperature: - Loading" FontSize="Large" HorizontalOptions="Center" />

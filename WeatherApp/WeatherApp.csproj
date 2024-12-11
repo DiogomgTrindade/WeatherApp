@@ -57,9 +57,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\broken_clouds.jpg" />
 	  <None Remove="Resources\Images\chuva.gif" />
+	  <None Remove="Resources\Images\clear_sky.jpg" />
+	  <None Remove="Resources\Images\few_clouds.jpg" />
 	  <None Remove="Resources\Images\heart_filled.svg" />
 	  <None Remove="Resources\Images\heart_outline.svg" />
+	  <None Remove="Resources\Images\light_rain.jpg" />
+	  <None Remove="Resources\Images\mist.jpg" />
+	  <None Remove="Resources\Images\no_image.png" />
+	  <None Remove="Resources\Images\overcast_clouds.jpg" />
+	  <None Remove="Resources\Images\scattered_clouds.jpg" />
+	  <None Remove="Resources\Images\welcome_image.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

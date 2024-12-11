@@ -18,7 +18,7 @@
                         x:Name="btnFavorites"
                         Clicked="btnFavorites_Clicked" />           
 
-                <Button Text="City Selection"
+                <Button Text="City Search"
                         x:Name="btnCitySelection"
                         Clicked="btnCitySelection_Clicked" />
                 
@@ -46,6 +46,13 @@
                         <Label Text="Welcome to WeatherApp!"
                                FontSize="Large" 
                                HorizontalOptions="Center"/>
+
+                        <Label Text="Here you can see and manage your weather spots!"
+                               FontSize="Large"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+
                         <Image Source="welcome_image.png" 
                                Aspect="AspectFit"
                                HorizontalOptions="CenterAndExpand" />

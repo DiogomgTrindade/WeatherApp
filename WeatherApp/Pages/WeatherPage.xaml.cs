@@ -17,7 +17,6 @@ public partial class WeatherPage : ContentPage
 		_currentCity = city;
 
 		CityNameLabel.Text = $"City: {city.Name}";
-		
 	}
 
    
@@ -35,9 +34,15 @@ public partial class WeatherPage : ContentPage
 
 		if (weather != null)
 		{
-			TemperatureLabel.Text = $"Temperature: {weather.Main.Temp}ºC";
+            int roundedTemperature = (int)Math.Round(weather.Main.Temp);
+
+			TemperatureLabel.Text = $"Temperature: {roundedTemperature}ºC";
 			DescriptionLabel.Text = $"Condition: {weather.Weather[0].Description}";
 			HumidityLabel.Text = $"Humidity: {weather.Main.Humidty}%";
+
+            string imageName = GetWeatherImage(weather.Weather[0].Description);
+            WeatherConditionImage.Source = ImageSource.FromFile(imageName);
+
 		}
 		else
 		{
@@ -88,5 +93,23 @@ public partial class WeatherPage : ContentPage
         _currentCity.isFavorite = isFavorite;
 
         UpdateFavoriteButton();
+    }
+
+
+    private string GetWeatherImage(string condition)
+    {
+        return condition.ToLower() switch
+        {
+            "overcast clouds" => "overcast_clouds.png",
+            "few clouds" => "few_clouds.png",
+            "clear sky" => "clear_sky.png",
+            "scattered clouds" => "scattered_clouds.png",
+            "broken clouds" => "broken_clouds.png",
+            "mist" => "mist.png",
+            "moderate rain" =>"moderate_rain.png",
+            "light rain" =>"light_rain.png",
+
+            _ => "no_image.png",
+        };
     }
 }
